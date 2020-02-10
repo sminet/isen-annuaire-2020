@@ -36,6 +36,12 @@
 					</li>
 				</ul>
 			</div>
+			
+			<form class="form-inline">
+				<div sec:authorize="isAuthenticated()">
+					Bonjour <span sec:authentication="name"></span>&nbsp;(<a th:href="@{/logout}" href="#">Déconnexion</a>)
+				</div>
+			</form>
 		</nav>
 		
 		<!-- our site will use bootstrap container layout -->
