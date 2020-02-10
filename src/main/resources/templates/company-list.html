@@ -1,0 +1,42 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Gestion des Entrprises</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des Entreprises</h1>
+			
+			<p sec:authorize="hasRole('ROLE_COMPANY_MANAGE')">
+				<a th:href="@{/company/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter une entreprise</a>
+			</p>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Nom</th>
+						<th>Président</th>
+						<th>Date de création</th>
+						<th sec:authorize="hasRole('ROLE_COMPANY_MANAGE')"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="company : ${companies}" th:object="${company}">
+						<td th:text="*{id}">1</td>
+						<td th:text="*{name}">Microsoft</td>
+						<td th:text="*{ceo}">Bill Gates</td>
+						<td th:text="*{#temporals.format(created)}">1972</td>
+						<td sec:authorize="hasRole('ROLE_COMPANY_MANAGE')">
+							<a th:href="@{|/company/edit/*{id}|}" class="btn btn-primary" role="button">
+								<span class="oi oi-pencil" title="Modifier" aria-hidden="true"></span>
+							</a>
+							<a th:href="@{|/company/delete/*{id}|}" class="btn btn-danger" role="button">
+								<span class="oi oi-delete" title="Supprimer" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

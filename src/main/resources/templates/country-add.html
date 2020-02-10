@@ -1,0 +1,21 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Gestion des Pays</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des Pays</h1>
+			
+			<form action="#" th:action="@{/country/add}" th:object="${country}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" placeholder="Nom du pays" th:field="*{name}">
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nom invalide</div>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+			</form>
+		</div>
+	</body>
+</html>

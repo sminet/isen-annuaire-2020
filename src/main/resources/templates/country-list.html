@@ -1,0 +1,38 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Gestion des Pays</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des Pays</h1>
+			
+			<p>
+				<a th:href="@{/country/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter un pays</a>
+			</p>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Nom</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="country : ${countries}" th:object="${country}">
+						<td th:text="*{id}">1</td>
+						<td th:text="*{name}">France</td>
+						<td>
+							<a th:href="@{|/country/edit/*{id}|}" class="btn btn-primary" role="button">
+								<span class="oi oi-pencil" title="Modifier" aria-hidden="true"></span>
+							</a>
+							<a th:href="@{|/country/delete/*{id}|}" class="btn btn-danger" role="button">
+								<span class="oi oi-delete" title="Supprimer" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
