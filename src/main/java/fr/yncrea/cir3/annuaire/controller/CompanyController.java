@@ -3,6 +3,7 @@ package fr.yncrea.cir3.annuaire.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +30,7 @@ public class CompanyController {
 		return "company-list";
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_COMPANY_MANAGE"})
 	@GetMapping({"/add", "edit/{id}"})
 	public String add(@PathVariable(required=false) Long id, Model model) {
 		CompanyForm form = new CompanyForm();
@@ -46,6 +48,7 @@ public class CompanyController {
 		return "company-add";
 	}
 
+	@Secured({"ROLE_ADMIN", "ROLE_COMPANY_MANAGE"})
 	@PostMapping("/add")
 	public String addForm(@Valid @ModelAttribute("company") CompanyForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
@@ -68,6 +71,7 @@ public class CompanyController {
 		return "redirect:/company/list";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_COMPANY_MANAGE"})
 	@GetMapping("/delete/{id}")
 	public String remove(@PathVariable Long id) {
 		companies.deleteById(id);

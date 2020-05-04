@@ -6,7 +6,7 @@
 		<div th:fragment="content">
 			<h1>Gestion des Entreprises</h1>
 			
-			<p sec:authorize="hasRole('ROLE_COMPANY_MANAGE')">
+			<p sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_COMPANY_MANAGE')">
 				<a th:href="@{/company/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter une entreprise</a>
 			</p>
 			
