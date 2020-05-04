@@ -1,6 +1,6 @@
 package fr.yncrea.cir3.annuaire.domain;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Contact {
 	private Country country;
 	
 	@ManyToMany
-	private List<Company> companies;
+	private Set<Company> companies;
 
 	public Long getId() {
 		return id;
@@ -74,11 +74,11 @@ public class Contact {
 		this.country = country;
 	}
 
-	public List<Company> getCompanies() {
+	public Set<Company> getCompanies() {
 		return companies;
 	}
 
-	public void setCompanies(List<Company> companies) {
+	public void setCompanies(Set<Company> companies) {
 		this.companies = companies;
 	}
 }

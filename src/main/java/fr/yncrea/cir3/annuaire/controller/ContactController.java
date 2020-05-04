@@ -94,7 +94,7 @@ public class ContactController {
 			c.setCountry(country.get());
 		}
 		
-		c.setCompanies(form.getCompanies().stream().map(e -> companies.findById(e).get()).collect(Collectors.toList()));
+		c.setCompanies(form.getCompanies().stream().map(e -> companies.findById(e).get()).collect(Collectors.toSet()));
 
 		contacts.save(c);
 
