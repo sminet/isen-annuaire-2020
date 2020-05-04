@@ -15,7 +15,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 	@Query("select c from Contact c left join fetch c.country left join fetch c.companies")
 	public Set<Contact> findAllAndFetch();
 	
-	@Query(value="select distinct c from Contact c left join fetch c.country left join fetch c.companies",
+	@Query(value="select c from Contact c left join fetch c.country left join fetch c.companies",
 			countQuery = "select count(contact) from Contact contact")
 	public Page<Contact> findAllAndFetch(Pageable pageable);
 }

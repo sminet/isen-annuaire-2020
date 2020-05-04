@@ -9,11 +9,6 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "authority")
 public class Authority implements GrantedAuthority {
@@ -25,4 +20,20 @@ public class Authority implements GrantedAuthority {
 	private Long id;
 	
 	private String authority;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 }

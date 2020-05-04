@@ -38,7 +38,7 @@ public class ContactController {
 
 	@GetMapping({ "", "/list" })
 	public String list(Model model, @PageableDefault(page=0, size=5) Pageable pageable) {
-		model.addAttribute("contacts", contacts.findAll(pageable));
+		model.addAttribute("contacts", contacts.findAllAndFetch());
 
 		return "contact-list";
 	}
