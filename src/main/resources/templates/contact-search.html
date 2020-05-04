@@ -1,0 +1,29 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Rechercher un contact</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Rechercher un contact</h1>
+			
+			<script>
+				$(function () {
+					$('#search-input').keyup(function () {
+						$.ajax({url: '[[@{/api/contact}]]?q=' + $(this).val() }).done(function (result) {
+							var ul = $('<ul>').addClass('list-group');
+							
+							$.each (result, function (key, item) {
+								ul.append($('<li>').addClass('list-group-item').text(item.email));
+							});
+							
+							$('#search-result').empty().append(ul);
+						});
+					});
+				});
+			</script>
+			
+			<input class="form-control" id="search-input" />
+			<div id="search-result"></div>
+		</div>
+	</body>
+</html>

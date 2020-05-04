@@ -107,4 +107,9 @@ public class ContactController {
 
 		return "redirect:/contact/list";
 	}
+	
+	@GetMapping("/search")
+	public String search() {
+		return "contact-search";
+	}
 }
